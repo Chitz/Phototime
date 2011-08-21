@@ -3,7 +3,7 @@ import os, time
 import subprocess
 
 path = sys.argv[1]
-ftype = "/*." + sys.argv[2]
+ftype = "/*." + sys.argv[2]	# I can't believe I was too lazy to add this line before ;)
 # os.listdir(path) Add this for nested directories later + 
 filelist = subprocess.Popen("ls " + path + ftype , shell=True,stdout=subprocess.PIPE, cwd=None).stdout.read().strip('\n').split('\n')
 for i in filelist:
