@@ -7,11 +7,13 @@ and time of their creation. As of there is no support for recursion but
 I hope to add it soon, if enough number of people think it would be useful
 enough.
 
-This is specially for JPG files, but you can easily rename it in the code and
-use it equally well for any other file type.
+//This is specially for JPG files, but you can easily rename it in the code and
+//use it equally well for any other file type.
+Edit : I have made this generic for all file types. It will work nicely for any file type
+Just enter the file type as the last command line argument. Case is important ( As of now ;) )
 
 How To :
 
 Just type the following command in the terminal :
 
-python phototime.py /path/to/your/photo/folder
+python phototime.py /path/to/your/photo/folder File_extension_without_preceding_dot
