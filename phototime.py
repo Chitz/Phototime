@@ -15,12 +15,10 @@ dirlist.append('.')		# This is to ensure that the main cause is not lost in the 
 for i in os.listdir(path):
 	if(os.path.isfile(i) != 1):
 		dirlist.append("./" + i)
-
-# Unleash the hounds on those wretched filepaths, I say
+# Smithers , Unleash the hounds , I say
 
 for i in dirlist:
-	# os.listdir(path) Add this for nested directories later + 
-	filelist = subprocess.Popen("ls " + i + ftype , shell=True,stdout=subprocess.PIPE, cwd=None).stdout.read().strip('\n').split('\n')
+	filelist = subprocess.Popen("ls " + i + ftype + " 2>/dev/null", shell=True,stdout=subprocess.PIPE, cwd=None).stdout.read().strip('\n').split('\n')
 	for j in filelist:
 		try:
 			statinfo = os.stat(j)
