@@ -1,25 +1,19 @@
+As you can see i have forked the repo from someone and have edited this according to the code for better functionality - 
+
+/************* Original ReadMe(with minor modifications ;-)) ***********************/
 I created this project mainly because I take photos extensively for my
 photolog and like them to be saved with the timestamp as the filename so that
 they can be accessed quickly later.
 
-This script will rename all the jpeg files in a specified directory as the date
-and time of their creation.What's more, it will do the same for directories nested upto
-one level in that directory. As of now there is no support for recursion but 
-I hope to add it soon, if enough number of people think it would be useful
-enough.
+This script will rename any type of specified file( e.g .jpeg,.bmp etc) in a specified directory as the date
+and time of their creation.It will do the same upto any number of levels in that directory.
 
 I have made this generic for all file types. It will work nicely for any file type
-Just enter the file type as the last command line argument. Case is important ( As of now ;) )
+Just enter the file type as the last command line argument. Case is important.
 
 How To :
 
 Just type the following command in the terminal :
 
-python phototime.py /path/to/your/photo/folder File_extension_without_preceding_dot
+python phototime.py /path/to/your/photo/folder Location_Name File_extension_without_preceding_dot   
 
-TODO :
-
--Add recursion
--Make the code fool-proof to folder names with whitespaces in them
--Make the code independent of case
--Add support for extension using * instead of specifying extension 
