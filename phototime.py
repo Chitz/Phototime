@@ -1,30 +1,32 @@
+#! /usr/bin/python
+import os
+import time
+import glob
 import sys
-import os, time
-import subprocess
+pathname = sys.argv[1]
+locationName = sys.argv[2]
+file_extension = sys.argv[3]
+def change(pathname):
+    for filename in glob.glob(os.path.join(pathname,'*.%s'%file_extension)):
+        createdTime_Epoch = os.path.getmtime(filename)
+        dateNtime = time.localtime(createdTime_Epoch)
+        Day = dateNtime.tm_mday
+        Month = dateNtime.tm_mon
+        Year = dateNtime.tm_year
+        Hour = dateNtime.tm_hour
+        Min = dateNtime.tm_min
+        Sec = dateNtime.tm_sec
+        CreatedTime = str(Hour)+":"+str(Min)+":"+str(Sec)
+        CreatedDate = str(Day) + '-' +str(Month) + '-' +str(Year)
+        TimeStamp = CreatedDate+"_"+CreatedTime
+        path = pathname + '/'
+        os.rename(filename,path+locationName+"_"+TimeStamp+'.%s'%file_extension)
 
-path = sys.argv[1]
-ftype = "/*." + sys.argv[2]	# I can't believe I was too lazy to add this line before ;)
-dirlist = []
-dirlist.append('.')		# This is to ensure that the main cause is not lost in the melee
+def get_file(pathname):
+    for f in os.listdir(pathname):
+        if os.path.isdir(pathname+'/%s'%f) == True:
+            get_file(pathname+'/%s'%f)
+        else:
+            change(pathname)
 
-# A loop to get all the directories in the current directory
-# Works only for 1 level right now. No whitespaces in directory name please
-# Should have been recursive, but I am too sleepy right now
-# Will do it later
-
-for i in os.listdir(path):
-	if(os.path.isfile(i) != 1):
-		dirlist.append("./" + i)
-# Smithers , Unleash the hounds , I say
-
-for i in dirlist:
-	filelist = subprocess.Popen("ls " + i + ftype + " 2>/dev/null", shell=True,stdout=subprocess.PIPE, cwd=None).stdout.read().strip('\n').split('\n')
-	for j in filelist:
-		try:
-			statinfo = os.stat(j)
-		except OSError:
-			continue
-		newname= time.strftime("%Y-%m-%d %H.%M:%S", time.localtime(statinfo.st_mtime)) + ".%s"%(sys.argv[2])
-		os.renames(j,i+"/"+newname)
-
-# And someone once said "What's in a name" .. Hah, in your face !!
+get_file(pathname)
